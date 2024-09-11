@@ -15,9 +15,16 @@ from locators import locators
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def setup_driver():
-    logging.info("Setting up the ChromeDriver.")
+     logging.info("Setting up the ChromeDriver.")
+    
+    # Set Chrome to run in headless mode
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # This runs Chrome without UI
+    chrome_options.add_argument("--no-sandbox")  # Required in Jenkins environments
+    chrome_options.add_argument("--disable-dev-shm-usage")  # To avoid shared memory issues
+    
     service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.implicitly_wait(10)  # Implicit wait to allow elements to load
     return driver
 
