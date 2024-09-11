@@ -15,7 +15,7 @@ from locators import locators
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def setup_driver():
-     logging.info("Setting up the ChromeDriver.")
+    logging.info("Setting up the ChromeDriver.")
     
     # Set Chrome to run in headless mode
     chrome_options = Options()
