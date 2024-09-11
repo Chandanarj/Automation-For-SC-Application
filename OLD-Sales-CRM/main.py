@@ -35,16 +35,16 @@ def login(driver):
         driver.get(base_url)
         
         logging.info("Performing Google OAuth login.")
-        google_oauth_button = WebDriverWait(driver, 15).until(EC.element_to_be_clickable(locators['google_oauth_button']))
+        google_oauth_button = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(locators['google_oauth_button']))
         google_oauth_button.click()
         
         logging.info("Entering email address.")
-        email_input = WebDriverWait(driver, 15).until(EC.element_to_be_clickable(locators['email_input']))
+        email_input = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(locators['email_input']))
         email_input.send_keys(credentials['email'])
         driver.find_element(*locators['next_button']).click()
         
         logging.info("Entering password.")
-        password_input = WebDriverWait(driver, 15).until(EC.element_to_be_clickable(locators['password_input']))
+        password_input = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(locators['password_input']))
         password_input.send_keys(credentials['password'])
         driver.find_element(*locators['password_next_button']).click()
 
@@ -57,11 +57,11 @@ def login(driver):
 def select_status_and_search(driver, status_value, status_locator_key):
     try:
         logging.info(f"Accessing the status dropdown and selecting '{status_value}'.")
-        dropdown_element = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(locators['status_dropdown']))
+        dropdown_element = WebDriverWait(driver, 50).until(EC.element_to_be_clickable(locators['status_dropdown']))
         dropdown_element.click()
 
         logging.info(f"Selecting the '{status_value}' status.")
-        status_option = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(locators[status_locator_key]))
+        status_option = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(locators[status_locator_key]))
         status_option.click()
 
     except Exception as e:
