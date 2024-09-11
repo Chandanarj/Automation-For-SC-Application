@@ -1,5 +1,6 @@
-# Selenium for browser automation
 selenium
-
-# WebDriver Manager to manage browser drivers
 webdriver-manager
+pytest
+pytest-html
+pytest-allure-adaptor
+pytest-xml
