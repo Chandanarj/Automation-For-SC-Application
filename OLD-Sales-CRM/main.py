@@ -17,16 +17,15 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def setup_driver():
     logging.info("Setting up the ChromeDriver.")
-    
-    # Set Chrome to run in headless mode
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # This runs Chrome without UI
-    chrome_options.add_argument("--no-sandbox")  # Required in Jenkins environments
-    chrome_options.add_argument("--disable-dev-shm-usage")  # To avoid shared memory issues
+    # Comment out headless mode to visually see the browser
+    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
     
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    driver.implicitly_wait(10)  # Implicit wait to allow elements to load
+    driver.implicitly_wait(10)
     return driver
 
 def login(driver):
